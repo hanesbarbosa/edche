@@ -22,7 +22,10 @@ func TestKeyUpdate(t *testing.T) {
 	// s4 495e0 + -408e1 + 384e2 + -304e3 + 305e12 + -225e13 + 335e23 + -255e123
 	s4 := New([]string{"495", "-408", "384", "-304", "305", "-225", "335", "-255"})
 
-	c2 := KeyUpdate(c1, s1, s2, s3, s4)
+	// Generate tokens (to be sent over the internet)
+	tks := GenerateTokens(s1, s2, s3, s4)
+
+	c2 := KeyUpdate(c1, tks[0], tks[1])
 
 	if strings.Compare(c2.E0.RatString(), "-98947311") != 0 ||
 		strings.Compare(c2.E1.RatString(), "118667702") != 0 ||
