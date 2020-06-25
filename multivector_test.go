@@ -50,4 +50,18 @@ func TestStringToMultivector(t *testing.T) {
 		strings.Compare(m.E123.RatString(), "-200") != 0 {
 		t.Errorf("Coefficients from multivector are different from given string.")
 	}
+
+	s = "345801144/308984965e0+36816179/308984965e1+10367/308984965e2+36816179/308984965e3+10367/308984965e12+36816179/308984965e13+10367/308984965e23+10367/308984965e123"
+	m = StringToMultivector(s)
+
+	if strings.Compare(m.E0.RatString(), "345801144/308984965") != 0 ||
+		strings.Compare(m.E1.RatString(), "36816179/308984965") != 0 ||
+		strings.Compare(m.E2.RatString(), "10367/308984965") != 0 ||
+		strings.Compare(m.E3.RatString(), "36816179/308984965") != 0 ||
+		strings.Compare(m.E12.RatString(), "10367/308984965") != 0 ||
+		strings.Compare(m.E13.RatString(), "36816179/308984965") != 0 ||
+		strings.Compare(m.E23.RatString(), "10367/308984965") != 0 ||
+		strings.Compare(m.E123.RatString(), "10367/308984965") != 0 {
+		t.Errorf("Coefficients from multivector are different from given string.")
+	}
 }

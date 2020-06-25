@@ -20,10 +20,12 @@ type Multivector struct {
 // New creates a new multivector from string coefficients
 func New(s []string) Multivector {
 	var c [8]*big.Rat
+	var success bool
 
 	for i := 0; i <= 7; i++ {
 		c[i] = new(big.Rat)
-		_, success := c[i].SetString(s[i] + "/1")
+		_, success = c[i].SetString(s[i])
+
 		if !success {
 			panic("Error converting string to big.Rat.")
 		}
